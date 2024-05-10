@@ -37,6 +37,11 @@ class UserRolePermissionSeeder extends Seeder
          Permission::create(['name' => 'create product']);
          Permission::create(['name' => 'update product']);
          Permission::create(['name' => 'delete product']);
+
+         Permission::create(['name' => 'view student']);
+         Permission::create(['name' => 'create student']);
+         Permission::create(['name' => 'update student']);
+         Permission::create(['name' => 'delete student']);
  
  
          // Create Roles
@@ -44,6 +49,7 @@ class UserRolePermissionSeeder extends Seeder
          $adminRole = Role::create(['name' => 'admin']);
          $staffRole = Role::create(['name' => 'staff']);
          $userRole = Role::create(['name' => 'user']);
+         $studentRole = Role::create(['name' => 'student']);
  
          // Lets give all permission to super-admin role.
          $allPermissionNames = Permission::pluck('name')->toArray();
@@ -55,6 +61,9 @@ class UserRolePermissionSeeder extends Seeder
          $adminRole->givePermissionTo(['create permission', 'view permission']);
          $adminRole->givePermissionTo(['create user', 'view user', 'update user']);
          $adminRole->givePermissionTo(['create product', 'view product', 'update product']);
+
+        // Let's give few permissions to student role.
+         $studentRole->givePermissionTo(['create student', 'view student', 'update student']);
  
  
          // Let's Create User and assign Role to it.

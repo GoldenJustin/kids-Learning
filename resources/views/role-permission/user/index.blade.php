@@ -1,4 +1,5 @@
-<x-app-layout>
+@extends('dashboard/layouts.main')
+@section('content')
 
     <div class="container mt-5">
         <a href="{{ url('roles') }}" class="btn btn-primary mx-1">Roles</a>
@@ -67,4 +68,4 @@
         </div>
     </div>
 
-</x-app-layout>
+@endsection

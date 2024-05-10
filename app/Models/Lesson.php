@@ -8,9 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Lesson extends Model
 {
     use HasFactory;
-    public function student()
+
+    protected $fillable = [
+        'lesson_name', 'description',
+    ];
+
+    public function students()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsToMany(Student::class);
     }
 
     public function quizzes()

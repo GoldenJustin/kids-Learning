@@ -2,6 +2,12 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LessonController;
+use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\QuizResultsController;
+
+Route::post('/store-quiz-result', [QuizResultsController::class, 'store'])->name('store.quiz.result');
 
 /*
 |--------------------------------------------------------------------------
@@ -23,34 +29,57 @@ Route::get('video', function () {
 Route::get('audio', function () {
     return view('daycare.audio');
 });
-Route::get('puzzle', function () {
-    return view('daycare.puzzle');
-});
-Route::get('contact-us', function () {
-    return view('daycare.contact');
-});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+   
+    
+
+
+    Route::get('addition', function () {
+        return view('quiz.quiz');
+    });
+    Route::get('subtract', function () {
+        return view('quiz.quizmin');
+    });
+    Route::get('play', function () {
+        return view('quiz.game');
+    });
+    Route::get('contact-us', function () {
+        return view('daycare.contact');
+    });
+    Route::get('learn', function () {
+        return view('daycare.learn');
+    });
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->middleware(['auth', 'verified'])
+        ->name('dashboard');
+
+
+    Route::get('lessons/create', [LessonController::class, 'create'])->name('lessons.create');
+    Route::delete('/lessons/{lesson}', [LessonController::class, 'delete'])->name('lessons.delete');
+
+    Route::get('lessons/enroll', [StudentsController::class, 'enroll'])->name('student.store-lessons');
+    Route::post('lessons', [LessonController::class, 'store'])->name('lessons.store');
 });
 
-Route::group(['middleware' => ['role:super-admin|admin']], function () {
 
+
+Route::group(['middleware' => ['role:super-admin|staff|student']], function () {
     Route::resource('permissions', App\Http\Controllers\Permission\PermissionController::class);
     Route::get('permissions/{permissionId}/delete', [App\Http\Controllers\Permission\PermissionController::class, 'destroy']);
 
-    Route::resource('roles', App\Http\Controllers\Roles\RoleController::class);
-    Route::get('roles/{roleId}/delete', [App\Http\Controllers\Roles\RoleController::class, 'destroy']);
-    Route::get('roles/{roleId}/give-permissions', [App\Http\Controllers\Roles\RoleController::class, 'addPermissionToRole']);
-    Route::put('roles/{roleId}/give-permissions', [App\Http\Controllers\Roles\RoleController::class, 'givePermissionToRole']);
+    Route::resource('roles', App\Http\Controllers\Role\RoleController::class);
+    Route::get('roles/{roleId}/delete', [App\Http\Controllers\Role\RoleController::class, 'destroy']);
+    Route::get('roles/{roleId}/give-permissions', [App\Http\Controllers\Role\RoleController::class, 'addPermissionToRole']);
+    Route::put('roles/{roleId}/give-permissions', [App\Http\Controllers\Role\RoleController::class, 'givePermissionToRole']);
 
     Route::resource('users', App\Http\Controllers\User\UserController::class);
+    Route::resource('student', App\Http\Controllers\studentsController::class);
     Route::get('users/{userId}/delete', [App\Http\Controllers\User\UserController::class, 'destroy']);
 });
 

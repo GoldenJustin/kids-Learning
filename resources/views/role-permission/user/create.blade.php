@@ -1,4 +1,5 @@
 @extends('dashboard/layouts.main')
+{{-- @extends('index') --}}
 @section('content')
 <div class="page-wrapper">
     <div class="container-fluid">
