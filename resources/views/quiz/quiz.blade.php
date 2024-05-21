@@ -16,7 +16,8 @@
                 <div class="col-md-6 col-lg-6 col-xl-4 wow fadeIn" data-wow-delay="0.1s">
                     {{-- original data --}}
                     <div id="quiz" style="display: none;">
-                        <form id="quizForm">
+                        <form id="quizForm" method="POST" action="{{ route('store.quiz.result') }}">
+                            @csrf
                             <p>Question <span id="questionNumber"></span>:</p>
                             <p id="question"></p>
                             <label>
@@ -31,6 +32,7 @@
                             <label>
                                 <input type="radio" name="userAnswer" value="3"> <span id="choice3"></span>
                             </label><br>
+                            <input type="hidden" name="quiz_score" id="quizScore">
                             <button type="submit">Submit</button>
                         </form>
                     </div>

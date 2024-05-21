@@ -33,10 +33,9 @@
                             <div class="service-content d-flex align-items-center justify-content-center p-4">
                                 <div class="service-content-inner">
                                     <div class="p-4"><i class="fas fa-gamepad fa-6x text-primary"></i></div>
-                                    <a href="#" class="h4">Study & Game</a>
-                                    <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, culpa qui officiis animi Lorem ipsum dolor sit amet, 
-                                        consectetur adipisicing elit.</p>
-                                    <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a>
+                                    <a  class="h4">Puzzles</a>
+                                    <p class="my-3"><br></p>
+                                    <a href="{{URL::TO('puzzle')}}" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -47,8 +46,7 @@
                                 <div class="service-content-inner">
                                     <div class="p-4"><i class="fas fa-sort-alpha-down fa-6x text-primary"></i></div>
                                     <a href="#" class="h4">A to Z Programs</a>
-                                    <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, culpa qui officiis animi Lorem ipsum dolor sit amet, 
-                                        consectetur adipisicing elit.</p>
+                                    <p class="my-3">Trial</p>
                                     <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a>
                                 </div>
                             </div>
@@ -60,8 +58,7 @@
                                 <div class="service-content-inner">
                                     <div class="p-4"><i class="fas fa-users fa-6x text-primary"></i></div>
                                     <a href="#" class="h4">Expert Teacher</a>
-                                    <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, culpa qui officiis animi Lorem ipsum dolor sit amet, 
-                                        consectetur adipisicing elit.</p>
+                                    <p class="my-3">Trial</p>
                                     <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a>
                                 </div>
                             </div>
@@ -73,8 +70,7 @@
                                 <div class="service-content-inner">
                                     <div class="p-4"><i class="fas fa-user-nurse fa-6x text-primary"></i></div>
                                     <a href="#" class="h4">Mental Health</a>
-                                    <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, culpa qui officiis animi Lorem ipsum dolor sit amet, 
-                                        consectetur adipisicing elit.</p>
+                                    <p class="my-3">Trial</p>
                                     <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a>
                                 </div>
                             </div>

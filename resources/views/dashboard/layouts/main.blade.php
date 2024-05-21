@@ -29,6 +29,7 @@
 
     <!-- Icomoon Font Icons css -->
     <link rel="stylesheet" href="{{ asset('assets/admin/fonts/style.css') }}">
+    @yield('puzzlestyle')
 
     <!-- Main css -->
     <link rel="stylesheet" href="{{ asset('assets/admin/css/main.min.css') }}">
@@ -76,72 +77,62 @@
 
                         </li>
 
-                        @if (auth()->user()->hasRole('student'))
-                            <li>
-                                <a href="{{ URL::TO('profile') }}">
-                                    <i class="icon-user1"></i>
-                                    <span class="menu-text">Profile</span>
-                                </a>
-                            </li>
-                            <li class="sidebar">
-                                <a href="#">
-                                    <i class="icon-layout"></i>
-                                    <span class="menu-text">Lessons</span>
-                                </a>
+                        @auth
+                            @if (auth()->user()->hasRole('student'))
+                                <li>
+                                    <a href="{{ URL::TO('profile') }}">
+                                        <i class="icon-user1"></i>
+                                        <span class="menu-text">Profile</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar">
+                                    <a href="#">
+                                        <i class="icon-layout"></i>
+                                        <span class="menu-text">Lessons</span>
+                                    </a>
 
-                            </li>
-                            <li class="sidebar">
-                                <a href="#">
-                                    <i class="icon-book-open"></i>
-                                    <span class="menu-text">Scores</span>
-                                </a>
-                            </li>
+                                </li>
+                                <li class="sidebar">
+                                    <a href="#">
+                                        <i class="icon-book-open"></i>
+                                        <span class="menu-text">Scores</span>
+                                    </a>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="{{ URL::to('users') }}">
+                                        <i class="icon-documents"></i>
+                                        <span class="menu-text">Users</span>
+                                    </a>
+                                </li>
 
+                                <li class="sidebar">
+                                    <a href="{{ URL::TO('lessons/create') }}">
+                                        <i class="icon-layout"></i>
+                                        <span class="menu-text">Lessons</span>
+                                    </a>
 
+                                </li>
+                                <li class="sidebar">
+                                    <a href="#">
+                                        <i class="icon-book-open"></i>
+                                        <span class="menu-text">Quizes</span>
+                                    </a>
+                                </li>
+                            @endif
+                        @endauth
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
 
-                            <li>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-
-                                    <x-dropdown-link :href="route('logout')"
-                                        onclick="event.preventDefault();
-															this.closest('form').submit();"><i
-                                            class="icon-log-out1"></i>
-                                        {{ __('Log Out') }}
-                                    </x-dropdown-link>
-                                </form>
-                            </li>
-                        @else
-                            <li>
-                                <a href="{{ URL::to('users') }}">
-                                    <i class="icon-documents"></i>
-                                    <span class="menu-text">Users</span>
-                                </a>
-                            </li>
-
-                            <li class="sidebar">
-                                <a href="{{ URL::TO('lessons/create') }}">
-                                    <i class="icon-layout"></i>
-                                    <span class="menu-text">Lessons</span>
-                                </a>
-
-                            </li>
-                            <li class="sidebar">
-                                <a href="#">
-                                    <i class="icon-book-open"></i>
-                                    <span class="menu-text">Quizes</span>
-                                </a>
-                            </li>
-
-
-
-                            <li>
-                                <a href="carousel.html">
-                                    <i class="icon-toll"></i>
-                                    <span class="menu-text">Carousels</span>
-                                </a>
-                            </li>
-                        @endif
+                                <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                        this.closest('form').submit();"><i
+                                        class="icon-log-out1"></i>
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        </li>
 
                     </ul>
                 </div>

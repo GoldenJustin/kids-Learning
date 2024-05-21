@@ -7,7 +7,6 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\QuizResultsController;
 
-Route::post('/store-quiz-result', [QuizResultsController::class, 'store'])->name('store.quiz.result');
 
 /*
 |--------------------------------------------------------------------------
@@ -20,34 +19,47 @@ Route::post('/store-quiz-result', [QuizResultsController::class, 'store'])->name
 |
 */
 
-Route::get('/', function () {
-    return view('daycare.homepage');
-});
+// Route::get('/', function () {
+//     return view('daycare.homepage');
+// });
 Route::get('video', function () {
     return view('daycare.video');
 });
 Route::get('audio', function () {
     return view('daycare.audio');
 });
+Route::get('puzzle', function () {
+    return view('puzzles.index');
+});
+Route::get('lion', function () {
+    return view('puzzles.lion');
+});
+Route::get('letter', function () {
+    return view('puzzles.letter');
+});
+Route::get('monkey', function () {
+    return view('puzzles.monkey');
+});
+Route::get('elephant', function () {
+    return view('puzzles.elephant');
+});
 
+Route::get('/', [App\Http\Controllers\DashboardController::class, 'homepage'])->name('homepage');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    Route::get('/addition', [QuizResultsController::class, 'add'])->name('add');
+
+    Route::get('/subtract', [QuizResultsController::class, 'subtract'])->name('subtract');
+    Route::post('/store-quiz-result', [QuizResultsController::class, 'store'])->name('store.quiz.result');
+
+
    
-    
-
-
-    Route::get('addition', function () {
-        return view('quiz.quiz');
-    });
-    Route::get('subtract', function () {
-        return view('quiz.quizmin');
-    });
-    Route::get('play', function () {
-        return view('quiz.game');
-    });
+   
     Route::get('contact-us', function () {
         return view('daycare.contact');
     });

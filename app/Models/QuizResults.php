@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class QuizResults extends Model
 {
+    protected $fillable = ['quiz_score', 'user_id'];
     use HasFactory;
 
-    public function student()
+    public function users()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function quiz()

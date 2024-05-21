@@ -6,10 +6,33 @@ const questionNumber = document.getElementById('questionNumber');
 const questionText = document.getElementById('question');
 const choices = document.querySelectorAll('input[name="userAnswer"]');
 const quizForm = document.getElementById('quizForm');
+const totalScoreElement = document.getElementById('totalScore');
+
 
 let score = 0;
 let questionIndex = 0;
 const questions = generateQuestions();
+
+// quizForm.addEventListener('submit', function(event) {
+//     event.preventDefault();
+//     const userAnswer = parseInt(document.querySelector('input[name="userAnswer"]:checked').value);
+
+//     if (!isNaN(userAnswer)) {
+//         if (userAnswer === questions[questionIndex].correctIndex) {
+//             score++;
+//         }
+
+//         questionIndex++;
+
+//         if (questionIndex < questions.length) {
+//             displayQuestion(questions[questionIndex], questionIndex + 1);
+//         } else {
+//             displayResults();
+//         }
+//     }
+// });
+
+// Get the total score element
 
 quizForm.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -25,6 +48,11 @@ quizForm.addEventListener('submit', function(event) {
         if (questionIndex < questions.length) {
             displayQuestion(questions[questionIndex], questionIndex + 1);
         } else {
+            // Set the total score before submitting the form
+            document.getElementById('quizScore').value = score;
+
+            // Submit the form
+            this.submit();
             displayResults();
         }
     }
@@ -63,7 +91,7 @@ function displayResults() {
     quiz.style.display = 'none';
     result.style.display = 'block';
     totalScore.textContent = score;
-    
+
     // Calculate total score
     const totalScoreValue = score;
 
@@ -104,3 +132,6 @@ function displayResults() {
 
 displayQuestion(questions[questionIndex], questionIndex + 1);
 quiz.style.display = 'block';
+
+
+

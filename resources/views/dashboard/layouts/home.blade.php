@@ -19,17 +19,23 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-sm-4 col-6">
-                <div class="info-tiles">
-                    <div class="info-icon">
-                        <i class="icon-watch_later"></i>
-                    </div>
-                    <div class="stats-detail">
-                        <h3>0</h3>
-                        <p>Attempts</p>
+            @auth
+            @if (auth()->user()->hasRole('super-admin'))
+                <div class="col-xl-3 col-sm-4 col-6">
+                    <div class="info-tiles">
+                        <div class="info-icon">
+                            <i class="icon-watch_later"></i>
+                        </div>
+                        <div class="stats-detail">
+                            <h3>{{ $totalquiz }}</h3>
+                            <p>Attempts</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+                    
+                @endif
+            @endauth
+
             <div class="col-xl-3 col-sm-4 col-6">
                 <div class="info-tiles">
                     <div class="info-icon">
@@ -41,7 +47,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-sm-4 col-6">
+            {{-- <div class="col-xl-3 col-sm-4 col-6">
                 <div class="info-tiles">
                     <div class="info-icon">
                         <i class="icon-shopping_basket"></i>
@@ -51,14 +57,14 @@
                         <p>Sales</p>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-xl-3 col-sm-4 col-6">
                 <div class="info-tiles">
                     <div class="info-icon secondary">
                         <i class="icon-check_circle"></i>
                     </div>
                     <div class="stats-detail">
-                        <h3>{{$totalLesson}}</h3>
+                        <h3>{{ $totalLesson }}</h3>
                         <p>Total Lessons</p>
                     </div>
                 </div>
@@ -70,7 +76,7 @@
     </div>
     <!-- Main container end -->
 @section('results')
-    <script>
+    {{-- <script>
         // Make AJAX request to fetch quiz results data
         fetch('/admin/quiz-results')
             .then(response => response.json())
@@ -83,6 +89,6 @@
             .catch(error => {
                 console.error('Error fetching quiz results:', error);
             });
-    </script>
+    </script> --}}
 @endsection
 @endsection

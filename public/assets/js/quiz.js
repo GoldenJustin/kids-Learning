@@ -6,6 +6,8 @@ const questionNumber = document.getElementById('questionNumber');
 const questionText = document.getElementById('question');
 const choices = document.querySelectorAll('input[name="userAnswer"]');
 const quizForm = document.getElementById('quizForm');
+const totalScoreElement = document.getElementById('totalScore');
+
 
 let score = 0;
 let questionIndex = 0;
@@ -25,10 +27,16 @@ quizForm.addEventListener('submit', function(event) {
         if (questionIndex < questions.length) {
             displayQuestion(questions[questionIndex], questionIndex + 1);
         } else {
+            document.getElementById('quizScore').value = score;
+            this.submit();
             displayResults();
+            
         }
     }
 });
+
+
+
 
 function generateQuestions() {
     const questions = [];

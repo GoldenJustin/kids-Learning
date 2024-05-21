@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('quiz_results', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained()->onDelete('cascade');
-            // $table->foreignId('quiz_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->integer('quiz_score');
             $table->timestamps();
         });
@@ -28,3 +27,6 @@ return new class extends Migration
         Schema::dropIfExists('quiz_results');
     }
 };
+
+
+            // $table->foreignId('quiz_id')->constrained()->onDelete('cascade');
