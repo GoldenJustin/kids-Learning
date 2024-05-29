@@ -13,27 +13,30 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
 
-    protected $data =[];
+    protected $data = [];
     public function __construct()
     {
-        $this->data['scores']= QuizResults::all();
+        $this->data['scores'] = QuizResults::all();
     }
     public function index()
     {
-        
-        $totalStudent = Student::count();
+
+        $totalStudent = User::whereHas('roles', function ($query) {
+            $query->where('name', 'student');
+        })->count();
+
         $totalLesson = Lesson::count();
-        $totalquiz = QuizResults::count();
+        $totalQuiz = QuizResults::count();
 
         return view('dashboard.layouts.home', [
             'totalStudent' => $totalStudent,
             'totalLesson' => $totalLesson,
-            'totalStudent' => $totalStudent,
-            'totalquiz' => $totalquiz,
+            'totalquiz' => $totalQuiz,
         ]);
     }
 
-    public function homepage(){
+    public function homepage()
+    {
         // if (auth()->user()->hasRole('super-admin')) {
         //     $this->data['scores'] = QuizResults::all();
         // } 
@@ -42,7 +45,4 @@ class DashboardController extends Controller
         // }
         return view('daycare.homepage');
     }
-
-
-  
 }

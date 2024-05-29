@@ -13,11 +13,14 @@
                                 aria-labelledby="addNewDocumentLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
+
                                         <div class="modal-header">
+
                                             <h5 class="modal-title" id="addNewDocumentLabel">Add Lesson</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
+
                                         </div>
                                         <div class="modal-body">
                                             <form method="POST" action="{{ route('lessons.store') }}" class="row gutters">
@@ -62,10 +65,17 @@
                                 </div>
                             </div>
                             <div class="documents-header">
+
                                 <h3>Today <span class="date" id="todays-date"></span></h3>
-                                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addNewDocument">Add
-                                    Lessons</button>
+                                @auth
+                                    @if (auth()->user()->hasRole('super-admin'))
+                                        <button class="btn btn-primary btn-lg" data-toggle="modal"
+                                            data-target="#addNewDocument">Add
+                                            Lessons</button>
+                                    @endif
+                                @endauth
                             </div>
+
                             {{-- Table for data --}}
                             <div class="table-container">
                                 <div class="table-responsive">
@@ -76,7 +86,11 @@
                                                 <th>Lesson Name</th>
                                                 <th>Description</th>
 
-                                                <th>Actions</th>
+                                                @auth
+                                                    @if (auth()->user()->hasRole('super-admin'))
+                                                        <th>Actions</th>
+                                                    @endif
+                                                @endauth
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -87,29 +101,36 @@
                                                     <td id="todays-date">{{ $lesson->description }}</td>
 
 
-                                                    <td>
-                                                        <div class="td-actions">
-                                                           
 
-                                                            <a href="#" class="icon red" data-toggle="tooltip"
-                                                                data-placement="top" title="Delete Lesson"
-                                                                onclick="event.preventDefault(); document.getElementById('deleteLessonForm').submit();">
-                                                                <i class="icon-delete"></i>
-                                                            </a>
-
-                                                            <form id="deleteLessonForm"
-                                                                action="{{ route('lessons.delete', $lesson->id) }}"
-                                                                method="POST" style="display: none;">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                            </form>
+                                                    @auth
+                                                        @if (auth()->user()->hasRole('super-admin'))
+                                                            <td>
+                                                                <div class="td-actions">
 
 
+                                                                    <a href="#" class="icon red" data-toggle="tooltip"
+                                                                        data-placement="top" title="Delete Lesson"
+                                                                        onclick="event.preventDefault(); document.getElementById('deleteLessonForm').submit();">
+                                                                        <i class="icon-delete"></i>
+                                                                    </a>
 
-                                                           
+                                                                    <form id="deleteLessonForm"
+                                                                        action="{{ route('lessons.delete', $lesson->id) }}"
+                                                                        method="POST" style="display: none;">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                    </form>
 
-                                                        </div>
-                                                    </td>
+
+
+
+
+                                                                </div>
+                                                            </td>
+                                                        @endif
+                                                    @endauth
+
+
                                                 </tr>
                                             @endforeach
 

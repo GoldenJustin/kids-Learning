@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\StudentScoreController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\QuizResultsController;
-
+use App\Http\Middleware\AdminMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,9 @@ Route::get('monkey', function () {
 Route::get('elephant', function () {
     return view('puzzles.elephant');
 });
+Route::get('books', function () {
+    return view('daycare.books');
+});
 
 Route::get('/', [App\Http\Controllers\DashboardController::class, 'homepage'])->name('homepage');
 
@@ -77,6 +81,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('lessons/enroll', [StudentsController::class, 'enroll'])->name('student.store-lessons');
     Route::post('lessons', [LessonController::class, 'store'])->name('lessons.store');
+    Route::get('view/lessons', [LessonController::class, 'store'])->name('lessons.view');
 });
 
 
@@ -93,6 +98,10 @@ Route::group(['middleware' => ['role:super-admin|staff|student']], function () {
     Route::resource('users', App\Http\Controllers\User\UserController::class);
     Route::resource('student', App\Http\Controllers\studentsController::class);
     Route::get('users/{userId}/delete', [App\Http\Controllers\User\UserController::class, 'destroy']);
+});
+
+Route::middleware(AdminMiddleware::class)->group(function(){
+    Route::get('/admin/student/score', [StudentScoreController::class, 'student_scores'])->name('admin.student.score');
 });
 
 require __DIR__ . '/auth.php';

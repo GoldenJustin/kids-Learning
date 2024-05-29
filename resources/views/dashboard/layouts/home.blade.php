@@ -36,7 +36,7 @@
                 @endif
             @endauth
 
-            <div class="col-xl-3 col-sm-4 col-6">
+            {{-- <div class="col-xl-3 col-sm-4 col-6">
                 <div class="info-tiles">
                     <div class="info-icon">
                         <i class="icon-visibility"></i>
@@ -46,7 +46,7 @@
                         <p>Quizes</p>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             {{-- <div class="col-xl-3 col-sm-4 col-6">
                 <div class="info-tiles">
                     <div class="info-icon">

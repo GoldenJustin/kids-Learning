@@ -89,8 +89,9 @@
                             <div class="collapse navbar-collapse" id="navbarCollapse">
                                 <div class="navbar-nav mx-auto">
                                     <a href="{{ url ('/')}}" class="nav-item nav-link active">Home</a>
-                                    <a href="{{ url ('video')}}" class="nav-item nav-link">Video</a>
+                                    <a href="{{ url ('books')}}" class="nav-item nav-link">Books</a>
                                     <a href="{{ url ('audio')}}" class="nav-item nav-link">Audio</a>
+                                    <a href="{{ url ('video')}}" class="nav-item nav-link">Video</a>
                                     <a href="{{ url ('puzzle')}}" class="nav-item nav-link">Puzzles</a>
 
                                     @if (Route::has('login'))
@@ -103,7 +104,7 @@
                                         @endauth
                                    
                                 @endif
-                                <a href="{{ url ('puzzle')}}" class="nav-item nav-link">History</a>
+                                {{-- <a href="{{ url ('puzzle')}}" class="nav-item nav-link">History</a> --}}
 
 
 

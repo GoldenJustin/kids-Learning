@@ -86,14 +86,14 @@
                                     </a>
                                 </li>
                                 <li class="sidebar">
-                                    <a href="#">
+                                    <a href="{{ URL::TO('lessons/create') }}">
                                         <i class="icon-layout"></i>
                                         <span class="menu-text">Lessons</span>
                                     </a>
 
                                 </li>
                                 <li class="sidebar">
-                                    <a href="#">
+                                    <a href="{{route('admin.student.score')}}">
                                         <i class="icon-book-open"></i>
                                         <span class="menu-text">Scores</span>
                                     </a>
@@ -114,9 +114,9 @@
 
                                 </li>
                                 <li class="sidebar">
-                                    <a href="#">
+                                    <a href="{{route('admin.student.score')}}">
                                         <i class="icon-book-open"></i>
-                                        <span class="menu-text">Quizes</span>
+                                        <span class="menu-text">Scores</span>
                                     </a>
                                 </li>
                             @endif
